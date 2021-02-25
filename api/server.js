@@ -1,7 +1,7 @@
 const express = require('express');
 const server = express();
 //routers
-const authRouter = require('./authRouter')
+const authRouter = require('./auth/authRouter')
 //imports
 const session = require('express-session')
 const logger = require('morgan');
