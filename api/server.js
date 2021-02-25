@@ -37,7 +37,7 @@ server.use('/api/auth/', authRouter )
 
 
 
-server.get('/api', (req, res)=>{
+server.get('/', (req, res)=>{
     res.status(200).json({Message: `Hello from the root api.`});
 })
 
