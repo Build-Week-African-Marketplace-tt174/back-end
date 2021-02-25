@@ -2,12 +2,12 @@ const db = require('../data/dbConfig');
 
 module.exports = {
     insert,
-
+    getBy
 }
 
 //gets existing user
-async function get(filter){
-    return await db.select('*').from('users').where(filter);
+async function getBy(filter){
+    return await db('users').where(filter).orderBy('id');
 }
 
 //inserts new user into db
