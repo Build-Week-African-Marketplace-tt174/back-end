@@ -1,6 +1,6 @@
 # African Market Back-End API
 
-##Installation: 
+## Installation: 
 
 - Clone back-end repo
 - Navigate to cloned repository on local machine using `cd`
