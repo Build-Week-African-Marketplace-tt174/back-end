@@ -1,9 +1,10 @@
 const express = require('express');
 const server = express();
 //routers
-const authRouter = require('./auth/authRouter')
+const authRouter = require('./auth/authRouter');
+const itemsRouter = require('./items/items-router');
 //imports
-const session = require('express-session')
+const session = require('express-session');
 const logger = require('morgan');
 const KnexSessionStore = require('connect-session-knex')(session);
 const cors = require('cors');
@@ -31,9 +32,10 @@ const sessionConfig = {
 
 
 // middlewares
-server.use(session(sessionConfig))
+server.use(session(sessionConfig));
 server.use(logger('short'), helmet(), cors(), express.json());
-server.use('/api/auth/', authRouter )
+server.use('/api/auth/', authRouter );
+server.use('/api/items', itemsRouter);
 
 
 
