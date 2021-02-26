@@ -37,6 +37,7 @@ module.exports = {
   production: {
     client: "pg",
     connection: {
+      filename: './data/db.db3',
       connectionString: pgConnection,
       ssl: { rejectUnauthorized: false }
     },
