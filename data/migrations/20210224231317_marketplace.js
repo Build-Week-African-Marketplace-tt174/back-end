@@ -18,6 +18,7 @@ exports.up = async function(knex) {
       tbl.integer('price').notNullable();
       tbl.string('location');
       tbl.string('photo_url');
+      tbl.integer('user_id').unsigned().notNullable().references('users.id').onDelete('CASCADE').onUpdate('CASCADE');
     })
     .createTable('user_items', tbl => {
       tbl.integer('user_id').unsigned().notNullable().references('users.id').onDelete('CASCADE').onUpdate('CASCADE');
