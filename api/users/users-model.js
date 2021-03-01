@@ -3,19 +3,26 @@ const db = require('../../data/dbConfig');
 module.exports = {
     get,
     getById,
-    add
+    add,
+    update
 }
 
 // gets all items
 async function get(id) {
-    return await db('user_items').where({ user_id: id });
+    return await db('items').select('id', 'name', 'description', 'price', 'location', 'photo_url').where({ user_id: id });
 }
 
 // gets item by id
-async function getById(itemID) {
-    return await db('users');
+async function getById(user, id) {
+    return await db('items').where({ user_id: user, id: id });
+}
+
+// updates item
+async function update(user, id, changes) {
+    const count = await('items').where({ user_id: user, id: id }).update(changes);
+    return await getById(user, id);
 }
 
 async function add(item) {
-    return await db('users');
+    return await db('items');
 }

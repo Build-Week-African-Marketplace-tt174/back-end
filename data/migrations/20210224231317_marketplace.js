@@ -20,13 +20,8 @@ exports.up = async function(knex) {
       tbl.string('photo_url');
       tbl.integer('user_id').unsigned().notNullable().references('users.id').onDelete('CASCADE').onUpdate('CASCADE');
     })
-    .createTable('user_items', tbl => {
-      tbl.integer('user_id').unsigned().notNullable().references('users.id').onDelete('CASCADE').onUpdate('CASCADE');
-      tbl.integer('item_id').unsigned().notNullable().references('items.id').onDelete('CASCADE').onUpdate('CASCADE');
-      tbl.primary(['user_id', 'item_id']);
-    })
 };
 
 exports.down = async function(knex) {
-    return await knex.schema.dropTableIfExists('user_items').dropTableIfExists('items').dropTableIfExists('users');
+    return await knex.schema.dropTableIfExists('items').dropTableIfExists('users');
 };
