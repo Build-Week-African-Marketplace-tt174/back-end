@@ -6,7 +6,12 @@ const Items = require('./users-model');
 
 // GET /api/users/:id
 router.get('/:id', restricted, async (req, res) => {
-    res.status(200).json({ router: 'working' })
+    try {
+        const userItems = await Items.get(req.params.id);
+        res.status(200).json(userItems);
+    } catch (err) {
+        res.status(500).json({ message: "Server failed to get user items", error: err })
+    }
 });
 
 // router.post('/', restricted, async (req, res) => {

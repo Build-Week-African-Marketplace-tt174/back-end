@@ -1,14 +1,14 @@
 const db = require('../../data/dbConfig');
 
 module.exports = {
-    getItems,
+    get,
     getById,
     add
 }
 
 // gets all items
-async function getItems(id) {
-    return await db('user_items');
+async function get(id) {
+    return await db('user_items').where({ user_id: id });
 }
 
 // gets item by id
