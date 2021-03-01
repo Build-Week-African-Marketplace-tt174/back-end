@@ -2,7 +2,8 @@ const express = require('express');
 const server = express();
 //routers
 const authRouter = require('./auth/authRouter');
-const itemsRouter = require('./items/items-router');
+const guestRouter = require('./guest/guest-router');
+const userRouter = require('./users/users-router');
 //imports
 const session = require('express-session');
 const logger = require('morgan');
@@ -34,8 +35,9 @@ const sessionConfig = {
 // middlewares
 server.use(session(sessionConfig));
 server.use(logger('short'), helmet(), cors(), express.json());
-server.use('/api/auth/', authRouter );
-server.use('/api/items', itemsRouter);
+server.use('/api/auth', authRouter );
+server.use('/api/items', guestRouter);
+server.use('/api/users', userRouter);
 
 
 
