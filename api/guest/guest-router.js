@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const restricted = require('../auth/restricted-middleware');
 
-const Items = require('./items-model');
+const Items = require('./guest-model');
 
 // GET /api/items
 router.get('/', async (req, res) => {
@@ -27,23 +26,5 @@ router.get('/:id', async (req, res) => {
         res.status(500).json({ message: "Server failed to get specified item." })
     }
 });
-
-// POST /api/items
-router.post('/', restricted, async (req, res) => {
-    const body = req.body;
-    if (!body.name || !body.price) {
-        res.status(400).json({ message: "Body must include name and price." })
-    }
-    try {
-        const newItem = await Items.add(req.body);
-        res.status(201).json(newItem)
-    } catch (err) {
-        res.status(500).json({ message: "Server failed to add new item." })
-    }
-});
-
-// PUT
-
-// DELETE
 
 module.exports = router;
