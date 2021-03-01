@@ -21,7 +21,7 @@ exports.up = async function(knex) {
     })
     .createTable('user_items', tbl => {
       tbl.integer('user_id').unsigned().notNullable().references('users.id').onDelete('CASCADE').onUpdate('CASCADE');
-      tbl.integer('item_id').unsigned().notNullable().references('items_id').onDelete('CASCADE').onUpdate('CASCADE');
+      tbl.integer('item_id').unsigned().notNullable().references('items.id').onDelete('CASCADE').onUpdate('CASCADE');
       tbl.primary(['user_id', 'item_id']);
     })
 };
