@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const userModel = require('../model/userModel');
+const authModel = require('./authModel');
 const jwt = require('jsonwebtoken')
 const secrets = require('../config/secrets');
 
@@ -11,7 +11,7 @@ router.post('/register', async (req, res) => {
     const newUser = await (req.body);
     const hash = bcrypt.hashSync(newUser.password, 12)
     newUser.password = hash
-    await userModel.insert(newUser)
+    await authModel.insert(newUser)
     .then(resolve=>{
         res.json({message: 'Welcome User',
             newUser: newUser});
@@ -35,7 +35,7 @@ catch (err){
 router.post('/login', async (req, res, next )=>{
 
     const { username, password } = req.body;
-    let user = await userModel.getBy({username})
+    let user = await authModel.getBy({username})
     let passwordsMatch = bcrypt.compareSync(password, user[0].password)
 
     if(user.length !== 0 && passwordsMatch){
