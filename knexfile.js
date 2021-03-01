@@ -33,6 +33,13 @@ module.exports = {
   //     tableName: 'knex_migrations'
   //   }
   // },
+  testing: {
+    client: 'sqlite3',
+    useNullAsDefault: true,
+    migrations: { directory: './data/migrations' },
+    pool: { afterCreate: (conn, done) => conn.run('PRAGMA foreign_keys = ON', done) },
+    connection: { filename: './data/test.db3' },
+  },
 
   production: {
     client: "sqlite3",
