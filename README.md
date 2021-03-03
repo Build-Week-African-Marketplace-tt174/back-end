@@ -27,8 +27,41 @@ Base URL : (https://africanmarketplace-tt174.herokuapp.com/)
 - [POST /api/items]
 
 ## Authentication Endpoints
+#### **POST** */api/auth/register*
 
+Registers a new user account on database.
 
+Request Body:
+``` 
+    {
+      company: 'Dunder Mifflin',
+      password: hash,
+      username: 'michaelscarn',
+      email: 'dundermifflinpaper@gmail.com',
+    }
+
+```
+
+Response: 
+```
+{
+    "cookie": {
+        "originalMaxAge": 3599999,
+        "expires": "2021-03-03T04:40:42.279Z",
+        "secure": false,
+        "httpOnly": true,
+        "path": "/"
+    },
+    "user": {
+        "id": 2,
+        "company": "Dunder Mifflin",
+        "email": "dundermifflinpaper@gmail.com",
+        "username": "michaelscarn",
+        "password": "$2b$10$rtx8cEji.GFCAiq8z6gIDekecZ7pd0fpZak4Y22KZoVgyFpDERHpa"
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTQ3NDI4NzAsImV4cCI6MTYxNDgyOTI3MH0.14U_JPFWGrDGxutYIwycw2FfTDvXPa_uLMZTMZOPMyA"
+}
+```
 ## User Endpoints
 
 ## Item Endpoints
