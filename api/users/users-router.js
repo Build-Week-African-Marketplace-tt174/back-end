@@ -10,7 +10,7 @@ router.get('/:user', restricted, checkUser, async (req, res) => {
         const userId = req.params.user;
         const user = await Items.getUserById(userId);
         const items = await Items.get(userId);
-        res.status(200).json({ user: user, items: items })
+        res.status(200).json({ user: user, itemList: items })
     } catch (err) {
         res.status(500).json({ message: "Server failed to get user and their items" })
     }
