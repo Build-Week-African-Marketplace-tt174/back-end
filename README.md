@@ -112,6 +112,48 @@ Response:
 }
 
 ```
-## User Endpoints
+## Guest Client Endpoints
+
+#### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/items*
+
+Retrieves all items that are currently for sale.
+
+Response: 
+```
+[
+    {
+        "id": 1,
+        "name": "Eggs",
+        "description": "Local, cage-free fresh farm eggs sold by the dozen.",
+        "price": 2.75,
+        "market": "Bungoma",
+        "category_id": 10,
+        "photo_url": null,
+        "user_id": 1
+    },
+
+    ...
+
+]
+```
+
+
+#### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/items/:id*
+
+Retrieves a specified item by id.
+
+Response: 
+```
+{
+    "id": 2,
+    "name": "Milk",
+    "description": "Local, unpasteurized milk sold by the gallon.",
+    "price": 2.25,
+    "market": "Bungoma",
+    "category_id": 1,
+    "photo_url": null,
+    "user_id": 1
+}
+```
 
 ## Item Endpoints
