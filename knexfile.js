@@ -1,4 +1,7 @@
 // Update with your config settings.
+const pg = require('pg');
+
+
 const pgConnection = process.env.DATABASE_URL;
 
 module.exports = {
