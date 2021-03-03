@@ -16,6 +16,9 @@ Base URL : (https://africanmarketplace-tt174.herokuapp.com/)
 
 ## All Endpoints
 
+### Root API
+- [GET /]
+
 ### Authentication
 - [POST /api/auth/register]
 - [POST /api/auth/login]
@@ -27,7 +30,20 @@ Base URL : (https://africanmarketplace-tt174.herokuapp.com/)
 - [POST /api/items]
 
 ## Authentication Endpoints
-#### **POST** */api/auth/login*
+
+
+#### **GET** */*
+
+Api is up
+
+
+Response: 
+```
+{
+    "Message": "Hello from the root api."
+}
+```
+#### **POST** *https://africanmarketplace-tt174.herokuapp.com/api/auth/login*
 
 Authenticates user, creates session, and generates a token.
 
@@ -58,7 +74,7 @@ Response:
 }
 ```
 
-#### **POST** */api/auth/register*
+#### **POST** *https://africanmarketplace-tt174.herokuapp.com/api/auth/register*
 
 Registers a new user account on database.
 
@@ -84,7 +100,7 @@ Response:
     }
 }
 ```
-#### **GET** */api/auth/logout*
+#### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/auth/logout*
 
 Logs user out and destroys session.
 
@@ -96,6 +112,48 @@ Response:
 }
 
 ```
-## User Endpoints
+## Guest Client Endpoints
+
+#### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/items*
+
+Retrieves all items that are currently for sale.
+
+Response: 
+```
+[
+    {
+        "id": 1,
+        "name": "Eggs",
+        "description": "Local, cage-free fresh farm eggs sold by the dozen.",
+        "price": 2.75,
+        "market": "Bungoma",
+        "category_id": 10,
+        "photo_url": null,
+        "user_id": 1
+    },
+
+    ...
+
+]
+```
+
+
+#### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/items/:id*
+
+Retrieves a specified item by id.
+
+Response: 
+```
+{
+    "id": 2,
+    "name": "Milk",
+    "description": "Local, unpasteurized milk sold by the gallon.",
+    "price": 2.25,
+    "market": "Bungoma",
+    "category_id": 1,
+    "photo_url": null,
+    "user_id": 1
+}
+```
 
 ## Item Endpoints
