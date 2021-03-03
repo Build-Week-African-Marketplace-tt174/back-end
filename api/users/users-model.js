@@ -10,12 +10,12 @@ module.exports = {
 
 // gets all items
 async function get(user) {
-    return await db('items').select('id', 'name', 'description', 'price', 'location', 'photo_url').where({ user_id: user });
+    return await db('items').select('id', 'name', 'description', 'price', 'market', 'photo_url').where({ user_id: user });
 }
 
 // gets item by id
 async function getById(user, id) {
-    return await db('items').where({ user_id: user, id: id }).select('id', 'name', 'description', 'price', 'location', 'photo_url').first();
+    return await db('items').where({ user_id: user, id: id }).select('id', 'name', 'description', 'price', 'market', 'photo_url').first();
 }
 
 // gets user by id
