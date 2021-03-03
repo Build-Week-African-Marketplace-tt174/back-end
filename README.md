@@ -27,18 +27,13 @@ Base URL : (https://africanmarketplace-tt174.herokuapp.com/)
 - [POST /api/items]
 
 ## Authentication Endpoints
-#### **POST** */api/auth/register*
+#### **POST** */api/auth/login*
 
-Registers a new user account on database.
+Authenticates user, creates session, and generates a token.
 
 Request Body:
 ``` 
-    {
-      company: 'Dunder Mifflin',
-      password: hash,
-      username: 'michaelscarn',
-      email: 'dundermifflinpaper@gmail.com',
-    }
+
 
 ```
 
@@ -61,6 +56,45 @@ Response:
     },
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTQ3NDI4NzAsImV4cCI6MTYxNDgyOTI3MH0.14U_JPFWGrDGxutYIwycw2FfTDvXPa_uLMZTMZOPMyA"
 }
+```
+
+#### **POST** */api/auth/register*
+
+Registers a new user account on database.
+
+Request Body:
+``` 
+    {
+        "company": "Schrute Farms",
+        "password": "password",
+        "username": "dwightbeets",
+        "email": "dwight@schrutefarms.com"
+    }
+```
+
+Response: 
+```
+{
+    "message": "Welcome User",
+    "newUser": {
+        "company": "Schrute Farms",
+        "password": "$2b$12$LTQxQNWahGOY2Y5tiR3UA.wl2m/hYrJs950A.Kzqt7IxE2S2y/rXe",
+        "username": "dwightbeets",
+        "email": "dwight@schrutefarms.com"
+    }
+}
+```
+#### **GET** */api/auth/logout*
+
+Logs user out and destroys session.
+
+
+Response: 
+```
+{
+    "message": "Session destroyed, user has been logged out."
+}
+
 ```
 ## User Endpoints
 
