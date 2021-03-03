@@ -24,7 +24,7 @@ Base URL : (https://africanmarketplace-tt174.herokuapp.com/)
 - [POST /api/auth/login]
 - [GET /api/auth/logout]
 
-### Guest Client Routes
+### Guest Client
 - [GET /api/items]
 - [GET /api/items/:id]
 - [POST /api/items]
