@@ -49,7 +49,10 @@ Authenticates user, creates session, and generates a token.
 
 Request Body:
 ``` 
-
+{
+    "username":"michaelscarn",
+    "password":"password"
+}
 
 ```
 
