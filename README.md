@@ -16,6 +16,9 @@ Base URL : (https://africanmarketplace-tt174.herokuapp.com/)
 
 ## All Endpoints
 
+### Root API
+- [GET /]
+
 ### Authentication
 - [POST /api/auth/register]
 - [POST /api/auth/login]
@@ -27,7 +30,20 @@ Base URL : (https://africanmarketplace-tt174.herokuapp.com/)
 - [POST /api/items]
 
 ## Authentication Endpoints
-#### **POST** */api/auth/login*
+
+
+#### **GET** */*
+
+Api is up
+
+
+Response: 
+```
+{
+    "Message": "Hello from the root api."
+}
+```
+#### **POST** *https://africanmarketplace-tt174.herokuapp.com/api/auth/login*
 
 Authenticates user, creates session, and generates a token.
 
@@ -58,7 +74,7 @@ Response:
 }
 ```
 
-#### **POST** */api/auth/register*
+#### **POST** *https://africanmarketplace-tt174.herokuapp.com/api/auth/register*
 
 Registers a new user account on database.
 
@@ -84,7 +100,7 @@ Response:
     }
 }
 ```
-#### **GET** */api/auth/logout*
+#### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/auth/logout*
 
 Logs user out and destroys session.
 
