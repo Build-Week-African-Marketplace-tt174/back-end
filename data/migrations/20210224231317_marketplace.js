@@ -17,13 +17,13 @@ exports.up = async function(knex) {
       tbl.string('name').notNullable();
       tbl.string('description', 512);
       tbl.decimal('price').notNullable();
-      tbl.string('market', 128);
-      tbl.integer('category_id').unsigned().notNullable().references('categories.id').onDelete('CASCADE').onUpdate('CASCADE')
+      tbl.string('market', 128).notNullable();
+      tbl.integer('category_id').unsigned().notNullable().references('categories.id').onDelete('CASCADE').onUpdate('CASCADE');
       tbl.string('photo_url');
       tbl.integer('user_id').unsigned().notNullable().references('users.id').onDelete('CASCADE').onUpdate('CASCADE');
     })
 };
 
 exports.down = async function(knex) {
-    return await knex.schema.dropTableIfExists('categories').dropTableIfExists('items').dropTableIfExists('users');
+    return await knex.schema.dropTableIfExists('items').dropTableIfExists('categories').dropTableIfExists('users');
 };
