@@ -27,7 +27,16 @@ Base URL : (https://africanmarketplace-tt174.herokuapp.com/)
 ### Guest Client
 - [GET /api/items]
 - [GET /api/items/:id]
-- [POST /api/items]
+
+### User
+- [GET /api/users]
+- [GET /api/users/:user]
+- [DELETE /api/users/:user]
+- [GET /api/users/items]
+- [GET /api/users/items/:id]
+- [PUT /api/users/:user/items/:id]
+- [POST /api/users/:user/items]
+- [DELETE /api/users/:user/items/:id]
 
 
 
@@ -171,7 +180,7 @@ Response:
 
 ## User Endpoints
 
-### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/users*
+#### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/users*
 
 Retrieves all users.
 
@@ -194,7 +203,7 @@ Response:
 ```
 
 
-### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/users/:id*
+#### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/users/:id*
 
 Retrieves a specified user by id. URL must include user id.
 
@@ -209,7 +218,7 @@ Response:
 ```
 
 
-### **DELETE** *https://africanmarketplace-tt174.herokuapp.com/api/users/:id*
+#### **DELETE** *https://africanmarketplace-tt174.herokuapp.com/api/users/:id*
 
 Deletes user and all of their items. URL must include user id.
 
@@ -221,7 +230,7 @@ Response:
 ```
 
 
-### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/users/:user/items*
+#### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/users/:user/items*
 
 Retrieves all users items. URL must include user id.
 
@@ -242,7 +251,7 @@ Response:
 ```
 
 
-### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/users/:user/items/:id*
+#### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/users/:user/items/:id*
 
 Retrieves users specified item by id. URL must include both user id and item id.
 
@@ -260,15 +269,15 @@ Response:
 ```
 
 
-### **PUT** *https://africanmarketplace-tt174.herokuapp.com/api/users/:user/items/:id*
+#### **PUT** *https://africanmarketplace-tt174.herokuapp.com/api/users/:user/items/:id*
 
 Updates users specified item by id. URL must include both user id and item id.
 
 Request Body Guidelines:
 
-    Required: 'name', 'price', 'market', 'category_id', and 'user_id'.
+Required: 'name', 'price', 'market', 'category_id', and 'user_id'.
 
-    Optional: 'description', 'photo_url'.
+Optional: 'description', 'photo_url'.
 
 Request Body:
 ```
@@ -296,15 +305,15 @@ Response:
 ```
 
 
-### **POST** *https://africanmarketplace-tt174.herokuapp.com/api/users/:user/items*
+#### **POST** *https://africanmarketplace-tt174.herokuapp.com/api/users/:user/items*
 
 Adds a new item for sale under user. URL must include user id.
 
 Request Body Guidelines:
 
-    Required: 'name', 'price', 'market', 'category_id', and 'user_id'.
+Required: 'name', 'price', 'market', 'category_id', and 'user_id'.
 
-    Optional: 'description', 'photo_url'.
+Optional: 'description', 'photo_url'.
 
 Request Body:
 ```
@@ -330,7 +339,7 @@ Response:
 ```
 
 
-### **DELETE** *https://africanmarketplace-tt174.herokuapp.com/api/users/:user/items/:id*
+#### **DELETE** *https://africanmarketplace-tt174.herokuapp.com/api/users/:user/items/:id*
 
 Deletes specified item from user. URL must include user id and item id.
 
