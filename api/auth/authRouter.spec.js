@@ -79,11 +79,12 @@ describe('server.js', ()=>{
             expect(res.body.length).toEqual(0)
         })
 
-        test('200 --GET-- /api/items/:id', async ()=>{
+        test('200 --GET-- /api/users', async ()=>{
     
             const res = await request(server)
-            .get('/api/items/3')
-            
+            .set('authorization', token)
+            .get('/api/users')
+
             expect(res.status).toEqual(200)
             expect(res.body).toEqual([])
             expect(res.body.length).toEqual(0)
