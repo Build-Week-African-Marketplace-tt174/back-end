@@ -4,6 +4,7 @@ const server = express();
 const authRouter = require('./auth/authRouter');
 const guestRouter = require('./guest/guest-router');
 const userRouter = require('./users/users-router');
+const categoriesRouter = require('./categories/categories-router');
 //imports
 const session = require('express-session');
 const logger = require('morgan');
@@ -38,6 +39,7 @@ server.use(logger('short'), helmet(), cors(), express.json());
 server.use('/api/auth', authRouter );
 server.use('/api/items', guestRouter);
 server.use('/api/users', userRouter);
+server.use('/api/categories', categoriesRouter);
 
 
 

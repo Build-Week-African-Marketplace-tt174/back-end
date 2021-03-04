@@ -1,23 +1,45 @@
 const express = require('express');
-const restricted = require('../auth/restricted-middleware');
-const Items = require('./users-model');
+const restricted = require('../middleware/restricted-middleware');
+const { checkUser, checkId, checkPayload } = require('../middleware');
+const Items = require('./usersItems-model');
+const Users = require('./users-model');
 const router = express.Router();
 
+// GET /api/users
+// returns all users
+router.get('/', restricted, async (req, res) => {
+    try {
+        const users = await Users.getUsers();
+        res.status(200).json(users);
+    } catch (err) {
+        res.status(500).json({ message: "Server failed to get all users", error: err })
+    }
+});
+
 // GET /api/users/:user
-// returns user and their list of items
+// returns specified user
 router.get('/:user', restricted, checkUser, async (req, res) => {
     try {
-        const userId = req.params.user;
-        const user = await Items.getUserById(userId);
-        const items = await Items.get(userId);
-        res.status(200).json({ user: user, itemList: items })
+        const user = await Users.getUserById(req.params.user);
+        res.status(200).json(user)
     } catch (err) {
-        res.status(500).json({ message: "Server failed to get user and their items" })
+        res.status(500).json({ message: "Server failed to get user and their items", error: err })
     }
-})
+});
+
+// DELETE /api/users/:user
+// deletes user and all their items
+router.delete('/:user', restricted, checkUser, async (req, res) => {
+    try {
+        const deleted = await Users.remove(req.params.user);
+        res.status(200).json({ message: "User was successfully removed"});
+    } catch (err) {
+        res.status(500).json({ message: "Server failed to deleted user" })
+    }
+});
 
 // GET /api/users/:user/items
-// returns list of users items
+// returns all of users items
 router.get('/:user/items', restricted, checkUser, async (req, res) => {
     try {
         const userItems = await Items.get(req.params.user);
@@ -67,39 +89,8 @@ router.delete('/:user/items/:id', restricted, checkUser, checkId, async (req, re
         const deleted = await Items.remove(req.params.user, req.params.id);
         res.status(200).json({ message: "Item was successfully removed" })
     } catch (err) {
-        res.status(500).json({ message: "Server failed to remove item" })
+        res.status(500).json({ message: "Server failed to remove item", error: err })
     }
 })
-
-// custom middleware
-async function checkUser(req, res, next) {
-    const user = req.params.user;
-    const data = await Items.getUserById(user);
-    if (data) {
-        next();
-    } else {
-        res.status(404).json({ message: "Specified user not found" });
-    }
-};
-
-async function checkId(req, res, next) {
-    const id = req.params.id;
-    const user = req.params.user;
-    const data = await Items.getById(user, id);
-    if (data) {
-        next();
-    } else {
-        res.status(404).json({ message: "Item with specified id belonging to specified user does not exist" })
-    }
-}
-
-async function checkPayload(req, res, next) {
-    const body = req.body;
-    if (!body.name || !body.price || !body.user_id) {
-        res.status(400).json({ message: "Body must include name, price, and user_id" })
-    } else {
-        next();
-    }
-};
 
 module.exports = router

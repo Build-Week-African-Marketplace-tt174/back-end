@@ -24,12 +24,23 @@ Base URL : (https://africanmarketplace-tt174.herokuapp.com/)
 - [POST /api/auth/login]
 - [GET /api/auth/logout]
 
-### User Routes
+### Guest Client
 - [GET /api/items]
 - [GET /api/items/:id]
-- [POST /api/items]
 
-## Authentication Endpoints
+### User
+- [GET /api/users]
+- [GET /api/users/:user]
+- [DELETE /api/users/:user]
+- [GET /api/users/items]
+- [GET /api/users/items/:id]
+- [PUT /api/users/:user/items/:id]
+- [POST /api/users/:user/items]
+- [DELETE /api/users/:user/items/:id]
+
+
+
+## Authentication
 
 
 #### **GET** */*
@@ -115,7 +126,7 @@ Response:
 }
 
 ```
-## Guest Client Endpoints
+## Guest Client
 
 #### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/items*
 
@@ -130,13 +141,21 @@ Response:
         "description": "Local, cage-free fresh farm eggs sold by the dozen.",
         "price": 2.75,
         "market": "Bungoma",
-        "category_id": 10,
+        "category": "Poultry",
         "photo_url": null,
-        "user_id": 1
+        "company": "The Electric Company"
     },
-
+    {
+        "id": 2,
+        "name": "Milk",
+        "description": "Local, unpasteurized milk sold by the gallon.",
+        "price": 2.25,
+        "market": "Bungoma",
+        "category": "Animal Products",
+        "photo_url": null,
+        "company": "The Electric Company"
+    },
     ...
-
 ]
 ```
 
@@ -148,15 +167,185 @@ Retrieves a specified item by id.
 Response: 
 ```
 {
-    "id": 2,
-    "name": "Milk",
-    "description": "Local, unpasteurized milk sold by the gallon.",
-    "price": 2.25,
+    "id": 3,
+    "name": "Potatoes",
+    "description": "5 lbs",
+    "price": 3.8,
     "market": "Bungoma",
-    "category_id": 1,
+    "category": "Roots & Tubers",
     "photo_url": null,
+    "company": "The Electric Company"
+}
+```
+
+## User Endpoints
+
+#### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/users*
+
+Retrieves all users.
+
+Response:
+```
+[
+    {
+        "id": 1,
+        "company": "The Electric Company",
+        "email": "testuser@email.com",
+        "username": "testuser1"
+    },
+    {
+        "id": 2,
+        "company": "Dunder Mifflin",
+        "email": "dundermifflinpaper@gmail.com",
+        "username": "michaelscarn"
+    }
+]
+```
+
+
+#### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/users/:id*
+
+Retrieves a specified user by id. URL must include user id.
+
+Response:
+```
+{
+    "id": 1,
+    "company": "The Electric Company",
+    "email": "testuser@email.com",
+    "username": "testuser1"
+}
+```
+
+
+#### **DELETE** *https://africanmarketplace-tt174.herokuapp.com/api/users/:id*
+
+Deletes user and all of their items. URL must include user id.
+
+Response:
+```
+{
+    "message": "User was successfully removed"
+}
+```
+
+
+#### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/users/:user/items*
+
+Retrieves all users items. URL must include user id.
+
+Response:
+```
+[
+    {
+        "id": 1,
+        "name": "Eggs",
+        "description": "Local, cage-free fresh farm eggs sold by the dozen.",
+        "price": 2.75,
+        "market": "Bungoma",
+        "category": "Poultry",
+        "photo_url": null
+    },
+    ...
+]
+```
+
+
+#### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/users/:user/items/:id*
+
+Retrieves users specified item by id. URL must include both user id and item id.
+
+Response:
+```
+{
+    "id": 1,
+    "name": "Eggs",
+    "description": "Local, cage-free fresh farm eggs sold by the dozen.",
+    "price": 2.75,
+    "market": "Bungoma",
+    "category": "Poultry",
+    "photo_url": null
+}
+```
+
+
+#### **PUT** *https://africanmarketplace-tt174.herokuapp.com/api/users/:user/items/:id*
+
+Updates users specified item by id. URL must include both user id and item id.
+
+Request Body Guidelines:
+
+Required: 'name', 'price', 'market', 'category_id', and 'user_id'.
+
+Optional: 'description', 'photo_url'.
+
+Request Body:
+```
+{
+    "name": "Eggs",
+    "description": "Local, cage-free fresh farm eggs sold by the dozen.",
+    "price": 2.75,
+    "market": "Bungoma",
+    "category_id": 10,
     "user_id": 1
 }
 ```
 
-## Item Endpoints
+Response:
+```
+{
+    "id": 1,
+    "name": "Eggs",
+    "description": "Local, cage-free fresh farm eggs sold by the dozen.",
+    "price": 2.75,
+    "market": "Bungoma",
+    "category": "Poultry",
+    "photo_url": null,
+}
+```
+
+
+#### **POST** *https://africanmarketplace-tt174.herokuapp.com/api/users/:user/items*
+
+Adds a new item for sale under user. URL must include user id.
+
+Request Body Guidelines:
+
+Required: 'name', 'price', 'market', 'category_id', and 'user_id'.
+
+Optional: 'description', 'photo_url'.
+
+Request Body:
+```
+{
+    "name": "Cucumber",
+    "price": 3.75,
+    "market": "Bungoma",
+    "category": 8
+}
+```
+
+Response:
+```
+{
+    "id": 6,
+    "name": "Cucumber",
+    "description": null,
+    "price": 3.75,
+    "market": "Bungoma",
+    "category": "Vegetables",
+    "photo_url": null
+}
+```
+
+
+#### **DELETE** *https://africanmarketplace-tt174.herokuapp.com/api/users/:user/items/:id*
+
+Deletes specified item from user. URL must include user id and item id.
+
+Response:
+```
+{
+    "message": "Item was successfully removed"
+}
+```
