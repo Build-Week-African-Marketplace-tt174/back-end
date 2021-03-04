@@ -276,8 +276,8 @@ Updates users specified item by id. URL must include both user id and item id.
 Request Body Guidelines:
 
 Required: 'name', 'price', 'market', 'category_id', and 'user_id'.
-Optional: 'description', 'photo_url'.
 
+Optional: 'description', 'photo_url'.
 
 Request Body:
 ```
@@ -312,8 +312,8 @@ Adds a new item for sale under user. URL must include user id.
 Request Body Guidelines:
 
 Required: 'name', 'price', 'market', 'category_id', and 'user_id'.
-Optional: 'description', 'photo_url'.
 
+Optional: 'description', 'photo_url'.
 
 Request Body:
 ```
