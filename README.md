@@ -38,6 +38,9 @@ Base URL : (https://africanmarketplace-tt174.herokuapp.com/)
 - [POST /api/users/:user/items]
 - [DELETE /api/users/:user/items/:id]
 
+### Categories
+- [GET /api/categories]
+- [GET /api/categories/:id]
 
 
 ## Authentication
@@ -347,5 +350,40 @@ Response:
 ```
 {
     "message": "Item was successfully removed"
+}
+```
+
+
+## Categories
+
+#### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/categories*
+
+Retrieves all categories.
+
+Response:
+```
+[
+    {
+        "id": 1,
+        "type": "Animal Products"
+    },
+    {
+        "id": 2,
+        "type": "Beans"
+    },
+    ...
+]
+```
+
+
+#### **GET** *https://africanmarketplace-tt174.herokuapp.com/api/categories/:id*
+
+Retrieves specified category. URL must include category id.
+
+Response:
+```
+{
+    "id": 1,
+    "type": "Animal Products"
 }
 ```
