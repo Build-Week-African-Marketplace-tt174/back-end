@@ -1,58 +1,44 @@
 {
-  "name": "back-end",
+  "name": "test-deploy-sauti",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
-    "migrateh": "heroku run knex migrate:latest -a YOUR_HEROKU_APP_NAME_HERE",
-    "rollbackh": "heroku run knex migrate:rollback -a YOUR_HEROKU_APP_NAME_HERE",
-    "databaseh": "heroku pg:psql -a YOUR_HEROKU_APP_NAME_HERE",
-    "seedh": "heroku run knex seed:run -a YOUR_HEROKU_APP_NAME_HERE",
+    "migrateh": "heroku run knex migrate:latest -a test-deploy-sauti",
+    "rollbackh": "heroku run knex migrate:rollback -a test-deploy-sauti",
+    "databaseh": "heroku pg:psql -a test-deploy-sauti",
+    "seedh": "heroku run knex seed:run -a test-deploy-sauti",
     "test": "cross-env NODE_ENV=testing jest --watchAll --verbose --runInBand",
     "deploy": "git push heroku main"
   },
   "engines": {
-    "node": "14.15.4",
+    "node": "v14.16.0",
     "npm": "6.14.11"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Build-Week-African-Marketplace-tt174/back-end.git"
-  },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Build-Week-African-Marketplace-tt174/back-end/issues"
-  },
-  "homepage": "https://github.com/Build-Week-African-Marketplace-tt174/back-end#readme",
   "dependencies": {
-    "bcrypt": "^5.0.0",
+    "bcrypt": "^5.0.1",
     "connect-session-knex": "^2.0.0",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "cors": "=2.8.5",
+    "dotenv": "=8.2.0",
+    "express": "=4.17.1",
     "express-session": "^1.17.1",
-    "helmet": "^4.4.1",
+    "helmet": "=4.4.1",
     "jsonwebtoken": "^8.5.1",
-    "knex": "^0.21.18",
-    "knex-cleaner": "^1.3.1",
+    "knex": "=0.21.17",
+    "knex-cleaner": "=1.3.1",
     "morgan": "^1.10.0",
-    "pg": "^8.5.1",
-    "sqlite3": "^5.0.2"
+    "pg": "=8.5.1"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
-    "jest": "^26.6.3",
-    "nodemon": "^2.0.7",
-    "supertest": "^6.1.3"
-  },
-  "jest": {
-    "testEnviorment": "node"
+    "@types/jest": "=26.0.20",
+    "cross-env": "=7.0.3",
+    "eslint": "=7.20.0",
+    "jest": "=26.6.3",
+    "nodemon": "=2.0.7",
+    "supertest": "=6.1.3"
   }
 }
