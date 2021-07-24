@@ -17,7 +17,7 @@ Base URL : (https://africanmarketplace-tt174.herokuapp.com/)
 ## All Endpoints
 
 ### Root API
-GET
+[] check
 
 ### Authentication
 - [POST /api/auth/register]
